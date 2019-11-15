@@ -8,19 +8,59 @@
    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
  	<title>Acenka: A CMS Scanner</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type=text/javascript>
+			$(function() {
+			  $('a#baseButton').bind('click', function() {
+				$.getJSON('/result', {
+				  website: $('input[name="website"]').val(),
+				}, function(data) {
+				  $("#rbox").append(data.result);
+				});
+				return false;
+			  });
+			});
+
+			// $(function()) {
+			// 	$('a#detButton').bind('click',function() {
+			// 		$.getJSON('/detResult', {
+			// 			website: $('input[name="website"]').val(),
+			// 		}, function(data) {
+			// 			$("#lbox").append(data.result);
+			// 		});
+			// 		return false;
+			// 	});
+			// });
+	</script>
  </head>
  <body>
 	 			<div class="logo">
 					<image src="{{ url_for('static', filename='images2.png')}}">
 				</div>
-        <form method="POST">
-        	<div class="searchBox">
-            <input class="searchInput" type="text" name="website" placeholder="Search">
-            <button class="searchButton" type="submit" id="sub">
-                <i class="material-icons">
-                    search
-                </i>
-            </button>
-        	</div>
-  </body>
+        <form>
+						<input type="text" name="website">
+						<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
+						<!-- <a href=# id="detButton"><input type="submit" name="button" value="detailInfo"></a> -->
+	        	<!-- <div class="searchBox">
+	            <input class="searchInput" type="text" name="website" placeholder="Search">
+	            <a href="#" id ="button"><button class="searchButton" type="submit" id="sub">
+	                <i class="material-icons">
+	                    search
+	                </i>
+	            </button></a>
+							<a href="#" id ="button2"><button class="searchButton" type="submit" id="sub2">
+									<i class="material-icons">
+											search
+									</i>
+							</button></a>
+	        	</div> -->
+				</form>
+
+				<div id="rbox">
+					<h3 id="divHead">Result(Version,Name,IP Address)</h3>
+				</div>
+				<div id = "lbox">
+
+				</div>
+	</body>
   </html>
