@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="shortcut icon" href="" type="image/x-icon">
+  	<!-- <link rel="shortcut icon" href="" type="image/x-icon"> -->
   	<meta name="description" content="Acenka: A CMS Scanner">
    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
- 	<title>Acenka: A CMS Scanner</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type=text/javascript>
-			$(function() {
-			  $('a#baseButton').bind('click', function() {
-				$.getJSON('/result', {
-				  website: $('input[name="website"]').val(),
-				}, function(data) {
-				  $("#rbox").append(data.result);
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/termynal.css')}}">
+ 		<title>Acenka: A CMS Scanner</title>
+		<script src="{{ url_for('static', filename='js/termynal.js')}}" data-termynal-container="#termynal"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+				$(function() {
+			  	$('a#baseButton').bind('click', function() {
+						$.getJSON('/result', {
+				  	website: $('input[name="website"]').val(),
+					}, function(data) {
+				  	$("#termynal").html(data.result);
+					});
+					return false;
+			  	});
 				});
-				return false;
-			  });
-			});
-
 			// $(function()) {
 			// 	$('a#detButton').bind('click',function() {
 			// 		$.getJSON('/detResult', {
@@ -31,38 +32,26 @@
 			// 		return false;
 			// 	});
 			// });
-	</script>
- </head>
- <body>
-	 			<div class="logo">
-					<image src="{{ url_for('static', filename='images2.png')}}">
+		</script>
+ 	</head>
+ 	<body>
+		<div class="main_div">
+			<image src="{{ url_for('static', filename='images/images2.png')}}">
+				<br><br><br><br><br><br><br>
+			<form id="mainForm">
+				<input id="searchbox" type="text" name="website">
+				<div id = "basicButton">
+					<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
 				</div>
-        <form id="mainForm">
-						<input id="searchbox" type="text" name="website">
-						<div id = "basicButton">
-							<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
-						</div>
-						<!-- <a href=# id="detButton"><input type="submit" name="button" value="detailInfo"></a> -->
-	        	<!-- <div class="searchBox">
-	            <input class="searchInput" type="text" name="website" placeholder="Search">
-	            <a href="#" id ="basebutton"><button class="searchButton" type="submit" id="sub">
-	                <i class="material-icons">
-	                    search
-	                </i>
-	            </button></a>
-							<a href="#" id ="button2"><button class="searchButton" type="submit" id="sub2">
-									<i class="material-icons">
-											search
-									</i>
-							</button></a>
-	        	</div> -->
-				</form>
-				<h2 id="divHead">Results</h2>
-				<div id="rbox">
-
-				</div>
-				<div id = "lbox">
-
-				</div>
+			</form>
+			<br><br><br>
+			<div class="mainBox" id="termynal" data-termynal>
+			</div>
+			<br>
+			<div class="mainBox" id="downloads">
+				<a href="{{ url_for('reportDownload',filename="portScan.txt")}}" id="nmapDL"><button>NMAP`</button></a>
+				<a href="{{ url_for('reportDownload',filename="cms_Scan.txt")}}" id="cmsDL"><button>CMS Scan</button></a>
+			</div>
+		</div>
 	</body>
-  </html>
+</html>

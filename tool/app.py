@@ -1,34 +1,21 @@
 __author__='kshitij'
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import acenka
 from threading import Thread
 import Queue
-# from flask_executor import Executor
+import subprocess
+
 
 que = Queue.Queue()
-threads_list = list()
-
-
-# def thread_basic(arg):
-    # ip = acenka.ip_find(arg)
-    # cms = acenka.cms_find(cms)
-    # cms = ' '.join(cms)
-    # final = "*" + cms + "<br/>" + "*" + ip
-    # return final
 
 def thread_cms(cms,arg):
     # cms = acenka.cms_find(arg)
-    print str(cms)
     acenka.scan(cms,arg)
-    import time
-    time.sleep(2000)
 
 def thread_nmap(arg):
     ipadr = acenka.ip_find(arg)
     acenka.port_find(ipadr)
-    import time
-    time.sleep(2000)
 
 app = Flask(__name__)
 
@@ -44,36 +31,19 @@ def basicInfo():
     cms2 = str(cms[1])
     cmsV = str(cms[0])
     if cmsV == '':
-        final = "CMS Name &#8611;" + cms2 + "<br/> IP Address &#8611;" +ip+ "<br/><br/> &#8618; NMAP Started <br/> &#8618; " + cms2+" scan Started<br/>"
+        final = "<span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty prompt=\">>>\"></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
     else:
-        final = "Version &#8611;" + cmsV + "<br/>" + "CMS Name &#8611;" + cms2 + "<br/> IP Address &#8611;" +ip+ "<br/><br/> &#8618; NMAP Started <br/> &#8618;" + cms2+" scan Started<br/>"
+        final = "<span data-ty=\"input\">CMS Version</span><span data-ty=\"progress\"></span><span data-ty>"+cmsV+"</span><span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty prompt=\">>>\"></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
+
     t3 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,param))
     t3.start()
-    t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(cms2,arg2)), args=(que,cms2,param))
-    print cms2
+    t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(arg1,arg2)), args=(que,cms,param))
     t2.start()
-    # threads_list.append(t2)
-    # threads_list.append(t3)
-    #
-    # for t in threads_list:
-    #     t.join()
-
     return jsonify(result = final)
 
-
-
-
-    #
-
-#  threads_list.append(t1)
-
-#   threads_list.append(t4)
-#     for t in threads_list:
-#         t.join()
-#
-#     while not que.empty():
-#         res = que.get()
-#         return jsonify(result=res)
+@app.route('/reportDownload/<filename>')
+def reportDownload(filename):
+    return send_from_directory('reports',filename)
 
 
 if __name__ == '__main__':

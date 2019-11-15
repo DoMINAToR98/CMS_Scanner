@@ -27,24 +27,28 @@ def ip_find(param):
 	return ip
 
 def port_find(param):
-	subprocess.call(["nmap","-A", "-oA","nmap_scan",param])
-
+	f = open("reports/portScan.txt", "w")
+	subprocess.call(["nmap","-A",param],stdout = f)
+	f.close()
 
 def scan(cmslist,param):
 	target=[]
 	target.append(cmslist)
 	###!---- Generating the report in Text Format ----!
+	f = open("reports/cms_Scan.txt","w")
 	if(target[0][1]=="WordPress"):
 		print "!---Starting WordPress Scan---!"
-		subprocess.call("wpscan --url "+ param +" --no-banner --ignore-maine-redirect --detection-mode aggressive -o target_reportwp.txt".split())
+		subprocess.call("wpscan --url "+ param +" --no-banner --ignore-maine-redirect --detection-mode aggressive".split(), stdout=f)
 	elif(target[0][1]=="Joomla"):
 		print "!---Starting Joomla Scan---!"
-		subprocess.call(("joomscan -u "+param+" > target_reportJoomla.txt").split())
+		subprocess.call(("joomscan -u "+param+" > target_reportJoomla.txt").split(),stdout=f)
 	elif(target[0][1]=="Drupal"):
 		print "!---Starting Drupal Scan---!"
-		subprocess.call(("droopescan scan drupal -u "+param+" > target_reportDrupal.txt").split())
+		subprocess.call(("droopescan scan drupal -u "+param+" > target_reportDrupal.txt").split(),stdout=f)
 	else:
-		print "No support for "+target[0][1]+" yet."
-
+		no_supp =  "No support for "+target[0][1]+" yet."
+		f.write(no_supp)
+		print no_supp
+	f.close()
 ###!---- Beautify the text file for pdf generation ----!
 # to be implemented
