@@ -1,25 +1,14 @@
 body {
     background-color: #1A202C;
+    text-align: center;
 }
 
-.logo {
-  position: absolute;
-  top: 10%;
-  left: 42.5%;
+.main_div {
+  text-align: center;
 }
+.mainBox{
 
-#mainForm{
-  position: absolute;
-  top: 40%
-}
-
-
-#rbox{
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  bottom: 5%;
+  display: inline-block;
   background: white;
   color: black;
   border-style: solid;
@@ -27,23 +16,5 @@ body {
   padding: 10px;
   text-align: left;
   vertical-align: middle;
-}
 
-#divHead {
-  position:absolute;
-  top:46%;
-  left:40%;
-  text-align: center;
-  background: white;
-
-
-}
-
-
-
-@media screen and (max-width: 620px) {
-.searchBox:hover > .searchInput {
-    width: 150px;
-    padding: 0 6px;
-}
 }
