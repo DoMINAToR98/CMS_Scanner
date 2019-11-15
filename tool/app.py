@@ -42,8 +42,11 @@ def basicInfo():
     ip = acenka.ip_find(param)
     cms = acenka.cms_find(param)
     cms2 = str(cms[1])
-    cms = ' '.join(cms)
-    final = "&#8611;" + cms + "<br/>" + "&#8611;" + ip + "<br/> &#8611;NMAP Started <br/> &#8611;" + cms2+" scan Started<br/>"
+    cmsV = str(cms[0])
+    if cmsV == '':
+        final = "CMS Name &#8611;" + cms2 + "<br/> IP Address &#8611;" +ip+ "<br/><br/> &#8618; NMAP Started <br/> &#8618; " + cms2+" scan Started<br/>"
+    else:
+        final = "Version &#8611;" + cmsV + "<br/>" + "CMS Name &#8611;" + cms2 + "<br/> IP Address &#8611;" +ip+ "<br/><br/> &#8618; NMAP Started <br/> &#8618;" + cms2+" scan Started<br/>"
     t3 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,param))
     t3.start()
     t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(cms2,arg2)), args=(que,cms2,param))
