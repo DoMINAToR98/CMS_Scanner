@@ -37,13 +37,15 @@
 	 			<div class="logo">
 					<image src="{{ url_for('static', filename='images2.png')}}">
 				</div>
-        <form>
-						<input type="text" name="website">
-						<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
+        <form id="mainForm">
+						<input id="searchbox" type="text" name="website">
+						<div id = "basicButton">
+							<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
+						</div>
 						<!-- <a href=# id="detButton"><input type="submit" name="button" value="detailInfo"></a> -->
 	        	<!-- <div class="searchBox">
 	            <input class="searchInput" type="text" name="website" placeholder="Search">
-	            <a href="#" id ="button"><button class="searchButton" type="submit" id="sub">
+	            <a href="#" id ="basebutton"><button class="searchButton" type="submit" id="sub">
 	                <i class="material-icons">
 	                    search
 	                </i>
@@ -55,9 +57,9 @@
 							</button></a>
 	        	</div> -->
 				</form>
-
+				<h2 id="divHead">Results</h2>
 				<div id="rbox">
-					<h3 id="divHead">Result(Version,Name,IP Address)</h3>
+
 				</div>
 				<div id = "lbox">
 
