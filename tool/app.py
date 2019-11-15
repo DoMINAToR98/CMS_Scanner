@@ -8,6 +8,7 @@ import subprocess
 
 
 que = Queue.Queue()
+threads_list=[]
 
 def thread_cms(cms,arg):
     # cms = acenka.cms_find(arg)
@@ -31,7 +32,8 @@ def basicInfo():
     cms2 = str(cms[1])
     cmsV = str(cms[0])
     if cmsV == '':
-        final = "<span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty prompt=\">>>\"></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
+        final = "<span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty ></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
+        print final
     else:
         final = "<span data-ty=\"input\">CMS Version</span><span data-ty=\"progress\"></span><span data-ty>"+cmsV+"</span><span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty prompt=\">>>\"></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
 
@@ -39,10 +41,17 @@ def basicInfo():
     t3.start()
     t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(arg1,arg2)), args=(que,cms,param))
     t2.start()
+
+    threads_list.append(t3)
+    threads_list.append(t2)
+
     return jsonify(result = final)
 
 @app.route('/reportDownload/<filename>')
 def reportDownload(filename):
+    for t in threads_list:
+        t.join()
+
     return send_from_directory('reports',filename)
 
 
