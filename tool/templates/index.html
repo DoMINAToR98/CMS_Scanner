@@ -6,41 +6,54 @@
    	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/termynal.css')}}">
  		<title>Acenka: A CMS Scanner</title>
-		<!-- <script type=text/javascript src="{{ url_for('static', filename='js/termynal.js')}}" data-termynal-container="#termynal"></script> -->
+		<script type=text/javascript src="{{ url_for('static', filename='js/termynal.js')}}" data-termynal-container="#baseOut"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type=text/javascript>
-				$(function() {
-			  	$('a#baseButton').bind('click', function() {
-						$.getJSON('/result', {
-				  	website: $('input[name="website"]').val(),
-					}, function(data) {
-				  	$("#termynal").html(data.result);
-					});
-					return false;
-			  	});
-				});
-		</script>
  	</head>
  	<body>
 		<div class="main_div">
 			<image src="{{ url_for('static', filename='images/images2.png')}}">
 				<br><br><br><br><br><br><br>
-			<form id="mainForm">
+			<form id="mainForm" action="/result">
 				<input id="searchbox" type="text" name="website">
-				<div id = "basicButton">
-					<a href=# id="baseButton"><input type="submit" name="button" value="basicInfo"></a>
+				<br><br>
+				<div id = "resultButtons">
+					<input id="baseButton" type="submit" value="Start Scanning" style="margin-right:110px;">
+					<input id="detButton" type="button" value="Detailed Reports" onclick="showDet()">
 				</div>
 			</form>
 			<br><br><br>
-			<div class="mainBox" id="termynal" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
-				
+			<div class="mainBox" id="baseOut" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+			    <span data-ty="input" data-ty-delay="6000">CMS Information && IP Address</span>
+			    <!-- <span data-ty="progress" data-ty-delay="6000" id="proSpan"></span> -->
+					<span data-ty id="info"></span>
+					<div id="nigger" style="display:none;">
+					<span  data-ty="input" data-ty-delay="600000">Scanning wesbite...</span>
+					<!-- <span data-ty="progress" data-ty-delay="600000"></span> -->
+					<span data-ty>
+						<a href="{{ url_for('reportDownload',filename="portScan.txt")}}" id="nmapDL"><button>NMAP Scan</button></a>
+						<a href="{{ url_for('reportDownload',filename="cms_Scan.txt")}}" id="cmsDL"><button>CMS Scan</button></a>
+					</span>
+				</div>
 			</div>
 			<br>
-			<div class="mainBox" id="downloads">
-				<a href="{{ url_for('reportDownload',filename="portScan.txt")}}" id="nmapDL"><button>NMAP`</button></a>
-				<a href="{{ url_for('reportDownload',filename="cms_Scan.txt")}}" id="cmsDL"><button>CMS Scan</button></a>
-			</div>
 		</div>
-		<script src="{{ url_for('static', filename='js/termynal.js')}}" data-termynal-container="#termynal"></script>
+		<script>
+			function showDet(){
+				var y = document.getElementById("nigger");
+				y.style.display = "inline-block";
+			}
+		</script>
+		<script type=text/javascript>
+				$(function() {
+					$('#baseButton').click(function() {
+						$.getJSON('/result', {
+						website: $('input[name="website"]').val(),
+					}, function(data) {
+						$("#info").html(data.result);
+					});
+					return false;
+					});
+				});
+		</script>
 	</body>
 </html>

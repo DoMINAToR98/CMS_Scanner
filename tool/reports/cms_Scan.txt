@@ -20,7 +20,25 @@
 [33m[++] Firewall detected : CloudFlare
 [34m[34m
 [+] Detecting Joomla Version
-[31m[++] 
+[33m[++] Joomla 1.5.15
+[34m[34m
+[+] Core Joomla Vulnerability
+[33m[++] Joomla! 1.5.x - SQL Error Information Disclosure
+EDB : https://www.exploit-db.com/exploits/34955/ 
+
+Joomla! < 1.7.0 - Multiple Cross-Site Scripting Vulnerabilities
+EDB : https://www.exploit-db.com/exploits/36176/
+
+Joomla! 1.5 < 3.4.5 - Object Injection Remote Command Execution
+CVE : CVE-2015-8562
+EDB : https://www.exploit-db.com/exploits/38977/
+
+Joomla! 1.0 < 3.4.5 - Object Injection 'x-forwarded-for' Header Remote Code Execution
+CVE : CVE-2015-8562 , CVE-2015-8566 
+EDB : https://www.exploit-db.com/exploits/39033/
+
+
+[34m[31m[++] 
 Shutting Down , Interrupt by user
 [34m[33m
 
