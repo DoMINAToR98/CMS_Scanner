@@ -38,8 +38,207 @@ CVE : CVE-2015-8562 , CVE-2015-8566
 EDB : https://www.exploit-db.com/exploits/39033/
 
 
-[34m[31m[++] 
-Shutting Down , Interrupt by user
+[34m[34m
+[+] Checking apache info/status files
+[31m[++] Readable info/status files are not found
+[34m[34m
+[+] admin finder
+[33m[++] Admin page : https://unric.org/en/administrator/
+[34m[34m
+[+] Checking robots.txt existing
+[33m[++] robots.txt is found
+path : https://unric.org/en/robots.txt 
+
+Interesting path found from robots.txt
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/
+https://unric.org/en/*.js$
+https://unric.org/en/*.css$
+https://unric.org/en/administrator/
+https://unric.org/en/cache/
+https://unric.org/en/components/
+https://unric.org/en/images/
+https://unric.org/en/includes/
+https://unric.org/en/installation/
+https://unric.org/en/language/
+https://unric.org/en/libraries/
+https://unric.org/en/media/
+https://unric.org/en/modules/
+https://unric.org/en/plugins/
+https://unric.org/en/templates/
+https://unric.org/en/tmp/
+https://unric.org/en/xmlrpc/
+https://unric.org/en/dropbydrop/
+https://unric.org/en/images-org/
+https://unric.org/en/img/
+https://unric.org/en/logs/
+https://unric.org/en/pdf/
+
+[34m[34m
+[+] Finding common backup files name
+[31m[++] Backup files are not found
+[34m[34m
+[+] Finding common log files name
+[31m[++] error log is not found
+[34m[34m
+[+] Checking sensitive config.php.x file
+[31m[++] Readable config files are not found
 [34m[33m
 
 Your Report : reports/unric.org/

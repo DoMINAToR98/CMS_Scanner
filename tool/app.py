@@ -36,12 +36,12 @@ def basicInfo():
         final = cmsV+ "<br/>" + cms2 + "<br/>" + ip
     else:
         final = cms2 + "<br/>" + ip
-    t3 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,ip))
-    t3.start()
+    t1 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,ip))
+    t1.start()
     t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(arg1,arg2)), args=(que,cms,param))
     t2.start()
 
-    threads_list.append(t3)
+    threads_list.append(t1)
     threads_list.append(t2)
 
     #dict = {'IP Address':ip, 'CMS Version':cmsV, 'CMS Name':cms2}
@@ -50,11 +50,12 @@ def basicInfo():
 
 @app.route('/reportDownload/<filename>')
 def reportDownload(filename):
-    for t in threads_list:
-        t.join()
-
-    return send_from_directory('reports',filename)
-
+    if filename == "portScan.txt":
+        threads_list[0].join()
+        return send_from_directory('reports',filename)
+    elif filename == "cms_Scan.txt":
+        threads_list[1].join()
+        return send_from_directory('reports',filename)
 
 if __name__ == '__main__':
     app.run(debug = True)
