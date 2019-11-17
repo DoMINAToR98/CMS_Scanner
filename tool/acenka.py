@@ -26,9 +26,9 @@ def ip_find(param):
 	ip = socket.gethostbyname(uparse[1])
 	return ip
 
-def port_find(param):
+def port_find(ip_param):
 	f = open("reports/portScan.txt", "w")
-	subprocess.call(["nmap","-A",param],stdout = f)
+	subprocess.call(["nmap","-A",ip_param],stdout = f)
 	f.close()
 
 def scan(cmslist,param):

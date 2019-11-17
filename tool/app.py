@@ -15,8 +15,8 @@ def thread_cms(cms,arg):
     acenka.scan(cms,arg)
 
 def thread_nmap(arg):
-    ipadr = acenka.ip_find(arg)
-    acenka.port_find(ipadr)
+    #ipadr = acenka.ip_find(arg)
+    acenka.port_find(arg)
 
 app = Flask(__name__)
 
@@ -31,13 +31,12 @@ def basicInfo():
     cms = acenka.cms_find(param)
     cms2 = str(cms[1])
     cmsV = str(cms[0])
-    if cmsV == '':
-        final = "<span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty ></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
-        print final
-    else:
-        final = "<span data-ty=\"input\">CMS Version</span><span data-ty=\"progress\"></span><span data-ty>"+cmsV+"</span><span data-ty=\"input\">CMS Name</span><span data-ty=\"progress\"></span><span data-ty>" + cms2 + "</span><span data-ty=\"input\">IP Address</span><span data-ty=\"progress\"></span><span data-ty>"+ip+"</span><span data-ty=\"input\">Scanning for open ports...</span><span data-ty=\"progress\"></span><span data-ty prompt=\">>>\"></span><span data-ty=\"input\">Scanning Website...</span><span data-ty=\"progress\"></span>"
 
-    t3 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,param))
+    if cmsV == ' ':
+        final = cmsV+ "<br/>" + cms2 + "<br/>" + ip
+    else:
+        final = cms2 + "<br/>" + ip
+    t3 = Thread(target=lambda q, arg1: q.put(thread_nmap(arg1)), args=(que,ip))
     t3.start()
     t2 = Thread(target=lambda q, arg1, arg2: q.put(thread_cms(arg1,arg2)), args=(que,cms,param))
     t2.start()
@@ -45,7 +44,9 @@ def basicInfo():
     threads_list.append(t3)
     threads_list.append(t2)
 
-    return jsonify(result = final)
+    #dict = {'IP Address':ip, 'CMS Version':cmsV, 'CMS Name':cms2}
+
+    return jsonify(result=final)
 
 @app.route('/reportDownload/<filename>')
 def reportDownload(filename):
