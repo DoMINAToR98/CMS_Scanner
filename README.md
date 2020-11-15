@@ -1,5 +1,5 @@
 # Acenka
-![https://imgur.com/eubLnlw]([Imgur](https://imgur.com/eubLnlw))
+![https://imgur.com/eubLnlw.png](https://imgur.com/eubLnlw.png)
 
 ## 1. Introduction to problem
 
